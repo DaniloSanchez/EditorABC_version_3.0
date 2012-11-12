@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!------------------------------------
+	-Tecnológico de Costa Rica			 -
+	-Escuela de Ingeniería en Computación-
+	-Autores							 -
+	- 	Danilo Sánchez Monge			 -
+	- 	Andrés Ramírez Fuentes			 -
+	------------------------------------->
+	<head>
+	  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	  <title>Editor ABC</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+	  <link rel="stylesheet" type="text/css" href="demo.css"/>
+	  <style type="text/css">
+        #paper0 {height: 420px;overflow: scroll;}
+		#contenerdor_botonves{visibility:collapse;}
+		#contenedor_principal{visibility:collapse;}
+	  </style>
+	  <script src="bootstrap/js/FileFunctions.js" type="text/javascript"></script>
+	  <script src="bootstrap/js/jquery-latest.js" type="text/javascript"></script>
+	  <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	  <script src="bootstrap/js/abcjs_editor_1.4-min.js" type="text/javascript"></script>
+	</head>
+	<!-- ======================= Encabezado a Cuerpo ======================= -->
+	<body>
+			<!-- =========================Menu========================= -->
+				<div class="navbar navbar-fixed-top">
+					<div class="navbar-inner">
+						<ul class="nav" role="navigation">
+						<!--=====================================-->
+							<li class="">
+								<a href="#" onClick="nuevo_ABC();" id="Btn_NUEVO">
+								<i class="icon-file"></i>Nuevo</a>
+							</li>
+							<!--=====================================-->
+							<li class="">
+								<form id="text-options" class="form-search">
+									<input type="text" class="input-medium search-query" id="text-filename"
+									placeholder="guardar como .ABC"/>
+									<input type="submit" value="" class="icon-download-alt"/>
+								</form>
+							</li>
+							<!--=====================================-->
+							<li class="">
+								<a href="#" onClick="Mostrar_Editar();" id="Btn_editar">
+								<i class="icon-edit"></i>Editar</a>
+							</li>
+							<!--=====================================-->
+							<li class="">
+								<a href="#" onClick="limpiar();" id="Btn_Limpiar">
+								<i class="icon-remove"></i>Limpiar</a>
+							</li>
+							<!--=====================================-->
+							<li class="">
+								<a href="#" id="Btn_Cargar" onClick="cargarABC();">
+								<i class="icon-ok"></i>Mostrar</a>
+							</li>
+							<!--=====================================-->
+							<li class="">
+								<input href="myprueba" type="file" id="files12" name="file"></input>
+							</li>
+							<!--=====================================-->
+							<li class="">
+								<a href="#_CopyRight" role="button" data-toggle="modal" id="_copyright" >
+								<i class="icon-info-sign"></i>Coryright</a>
+							</li>
+							<!--=====================================-->
+							<li class="">
+								<a href="#Ayuda_modal" role="button" data-toggle="modal" id="_Ayuda" >
+								<i class="icon-list-alt"></i>FAQ's</a>
+							</li>
+							<!--=====================================-->
+						</ul>
+					</div>
+				</div>
+			<!-- =========================Menu========================= -->
+		<br><br><br>
+		<div class="container" id="contenerdor_botonves">
+			<div class="row">
+				<center>
+				<div class="btn-group">
+					<a href="#notas_modal" role="button" class="btn btn-success" data-toggle="modal" style="height: 30px; width: 100px"><img src="bootstrap/source/notes.png"  width="23" height="23"> Notas</a>
+					<a href="#silencios_modal" role="button" class="btn btn-primary" data-toggle="modal" style="height: 30px; width: 100px"><img src="bootstrap/source/silencio.png"  width="30" height="30">Silencios</a>
+					<a href="#arreglos_modal" role="button" class="btn btn-warning" data-toggle="modal" style="height: 30px; width: 100px"> <img src="bootstrap/source/calderon.png"  width="30" height="30">	Adornos</a>
+					<a href="#encabezado_modal" role="button" class="btn btn-danger" data-toggle="modal" style="height: 30px; width: 100px"><i class="icon-align-left"></i>Encabezado</a>				
+				</div>
+				</center>
+			</div>					
+			<br>							
+			<!-- =========================botones========================= -->
+			<div class="row">
+				<div class="span6">
+					<div class="btn-group" align="center">								
+						<button class="btn btn-inverse" type="button" onclick="ligadura();"> ligadura </button>
+						<button class="btn btn-inverse" type="button" onclick="compas();"> | compás</button>
+						<button class="btn btn-inverse" type="button" onclick="abrir_repeticion();"> |: abrir repetición </button>				
+						<button class="btn btn-inverse" type="button" onclick="cerrar_repeticion();"> :| cerrar repetición </button>		
+						<button class="btn btn-inverse" type="button" onclick="barra_final();"> |] Final </button>
+					</div>
+				</div>	
+				<div class="span1"></div>	
+				<div class="span5">
+					<div class="btn-group" align="center">								
+						<button class="btn btn-info" type="button" onclick="sostenido();"> # </button>
+						<button class="btn btn-info" type="button" onclick="bemol();"> b </button>
+						<button class="btn btn-info" type="button" onclick="becuadro();"> Becuadro </button>				
+						<button class="btn btn-info" type="button" onclick="doble_sostenido();"> doble sostenido </button>			
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--===============================contenido================================-->
+		<div class="container-fluid" id="contenedor_principal">
+		  <div class="row-fluid">
+		  
+			<div class="span4">
+				</br>
+				<div id="midi"></div>
+				<h4>ABC file</h4>
+				<section id="text-demo">
+					<textarea id="textarea"   rows="21" class="span12"></textarea>
+				</section>
+				
+			</div>
+			
+			</br>
+			<div class="span8">
+				<h4>Score</h4>
+					<div id="paper0" class="span12 well" >
+				</div>
+			</div>
+		  </div>
+		</div>
+		<div id="warnings"></div>
+		<!--===============================contenido================================-->
+
+		<!--=================================MODALS notas===============================-->
+		<div id="notas_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>Inserta Nota</h3>
+        </div>
+        <div class="modal-body">
+          <label class="checkbox inline">Figura
+	          <select id="notas_figura" class="span3">
+	            <option>redonda</option>
+	            <option>blanca</option>
+	            <option>negra</option>
+	            <option>corchea</option>
+	            <option>semicorchea</option>
+	            <option>fusa</option>
+	            <option>semifusa</option>
+	          </select>
+          </label>
+          <label class="checkbox inline">Nota
+	          <select id="nota" class="span3">
+	            <option>Do</option>
+	            <option>Re</option>
+	            <option>Mi</option>
+	            <option>Fa</option>
+	            <option>Sol</option>
+	            <option>La</option>
+	            <option>Si</option>
+	          </select>
+          </label>
+          <label class="checkbox inline">octava
+          	<select id="frecuencia" class="span3">
+          		<option>1</option>
+          		<option>2</option>
+          		<option>3</option>
+          		<option>4</option>
+          	</select>
+          </label>
+
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="notas_insert();">Ok</a>
+        </div>
+      </div>
+
+      <!--=================================MODALS silencios===============================-->
+		<div id="silencios_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>Inseta Silencio</h3>
+        </div>
+        <div class="modal-body">
+          <label class="checkbox inline">Figura
+	          <select id="silencio_notas" class="span3">
+	            <option>redonda</option>
+	            <option>blanca</option>
+	            <option>negra</option>
+	            <option>corchea</option>
+	            <option>semicorchea</option>
+	            <option>fusa</option>
+	            <option>semifusa</option>
+	          </select>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="silencios_insert();">Ok</a>
+        </div>
+      </div>
+
+      <!--=================================MODALS arreglos===============================-->
+		<div id="arreglos_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3> Inserta Arreglo</h3>
+        </div>
+        <div class="modal-body">          
+		  <label class="checkbox inline">Decoraciones
+	          <select id="acentos_notas" class="span3">	          	
+	            <option>staccato</option>
+	            <option>Irish roll</option>
+	            <option>calderón</option>	            
+	            <option>acento</option>
+	            <option>mordete bajo</option>
+	            <option>Coda</option>
+	            <option>mordete alto</option>
+	            <option>signo</option>
+	            <option>trill</option>
+	            <option>up-bow</option>
+	            <option>down-bow</option>
+	          </select>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="arreglos_insert();">Ok</a>
+        </div>
+      </div>
+      <!--=================================MODALS encabezado===============================-->
+		<div id="encabezado_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>Crear encabezado</h3>
+        </div>
+        <div class="modal-body">        
+          	<div class="container" id="modal_encabezado">
+			  <div class="row">
+					<div class="span3">
+						<label>Numero de pista: </label>
+		          		<input id="pista_id"type="text" placeholder="1">
+		          		<label>Titulo de canción: </label>
+		          		<input id="name_id"type="text" placeholder="name">
+		          		<label>Metrica: </label>
+		          		<input id="metric_id"type="text" placeholder="4/4">
+		          		<label>Escala musical: </label>
+		          		<input id="scale_id"type="text" placeholder="G">
+					</div>
+					</br>
+					<div class="span2" >
+						<label>Compositor: </label>
+		         		 <input id="comp_id"type="text" placeholder="Beethoven">
+		         		 <label>Tempo: </label>
+		          		<input id="tempo_id"type="text" placeholder="130">
+		          		<label>Notas a pie de pagina: </label>
+		          		<input id="notes_id"type="text" placeholder="">
+					</div>
+		  	  	</div>
+			</div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="encabezado_insert();">Ok</a>
+        </div>
+      </div>
+	  
+		<script type="application/ecmascript" async="" src="bootstrap/js/BlobBuilder.min.js"></script>
+        <script type="application/ecmascript" async="" src="bootstrap/js/FileSaver.min.js"></script>
+        <script type="application/ecmascript" async="" src="bootstrap/js/init.js"></script>
+		<form style="display: none;" method="POST" action="/tunes/TEMP.pdf" target="_blank"></form>
+
+
+	<!--=================================MODALS CotyRight===============================-->	
+	  <div id="_CopyRight" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>CopyRight</h3>
+        </div>
+        <div class="modal-body">
+          <h3>Todos los Derechos Resevados</h3>
+		    <p>Tecnológco de Costa Rica</p><br>
+			<p>Escuela de Ingeniería en Computacíon</p><br>
+              <p>Este Programa es propiedad de los programadores:</p><br>
+				<p>Danilo Sanchez Monge</p><br>
+				<p>Andrés Ramiréz Fuentes</p><br>
+			  <p>Fue Desarrollado para el curso <h5>Interfaces Graficas de Usuario</h5> Segundo semestre del año 2012.</p>
+				
+          
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="">Cerrar</a>
+        </div>
+      </div>
+	 <!--=================================MODALS Ayuda===============================-->
+		<div id="Ayuda_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>Ayuda</h3>
+        </div>
+        <div class="modal-body">
+          <h4>acerca de...</h4>
+          <p> Este programa esta creado para aquellas personas que quieran crear, editar o escuchar música en el formato ABC.
+          </p>
+          <h4>Uso</h4>
+          <p>El programa posee dos formas de uso: <br>
+          	1. Crear un archivo en ABC format desde cero con el boton "NUEVO" que se encuentra en la parte del encabezado. <br>
+          	2. Cargar un archivo desde su computador que este en ABC format el cual podra editar, escuchar y guardar si asi lo desea.</p>
+          <h5> Crear NUEVO</h5>
+          <p> 1- Para crear un nuevo documento usted debera dar clic en el boton "NUEVO" que se encuentra en el encabezado de la pagina.<br>
+          	  2- Seguidamente le aparecerá un área donde podrá escribir en formato ABC y se le mostrara del lado derecho la partitura.<br>
+          	  3- Usted podra utilizar los comandos que se encuentran entre el encabezado y el cuadro de edición. Estos son elementos ABC predefinidos, los cuales podra insertar en el cuadro y se mostrarán en la partitura.</p> 
+          <h5> Cargar Archivo </h5>
+          <p>1- Primero debera seleccionar un archivo que se encuentre en su computador. para ello deberá dar clic en "Seleccionar archivo".<br>
+          	2- Después de haber seleccionado su archivo, para ver el contenido del mismo usted tendra que dar clic en "Mostrar".<br>
+            3- Si desea editar con los comandos predefinidos, tendrá que dar clic en Editar el cual le mostrará los botones para editar.</p>
+           <h5>Guardar Archivo</h5>
+           <p>Si al final de su proyecto usted desea guardarlo en su computador, basta con escribir el nombre en el cuadro de texto que dice "guardar como .ABC" que se encuentra en el encabezado. Seguidamente dar clic en el botón que se encuentra al lado derecho del mismo. Se guardara un archivo en su carpeta de descargas.</p>
+           <h5>Escuchar Música</h5>
+           <p>  
+            Si desea escuchar la música simplemente usted debe de dar clic encima del boton "play" que aparecera encima del cuadro de edición<br> NOTA: Para escuchar la música en formato MIDI, usted necesitará contar con Quicktime instaldo en su ordenador. <br>
+           	en algunos navegadores necesitará dar permiso para la ejecución del plug-in.</p>
+           	<h5>Barra de herramientas</h5>
+           	<p>La página cuenta con algunos elementos del formato ABC predefinidos los cuales pueden ser utilizados al dar clic encima del botón "Editar" que se encuentra en el encabezado. <br>
+           		se le mostrará ciertos elementos entre los cuales puede escoger: NOTAS, SILENCIOS, ADORNOS, ENCABEZADO que se podran personalizar una vez que haya dado clic encima de los botones.<br>
+           		Existen otro que no poseen opciones de personalización, sino que son herramientas rápidas las cuales aparecerán en el área de edición. Las opciones son: LIGADURAS, COMPÁS, REPETICIÓN, FINAL, SOSTENIDO, BEMOL, BECUADRO, DOBLE SOSTENIDO.</p>
+           	<h5>el botón LIMPIAR</h5>
+           	<p>Si el area de edición se encuentra con alguna información y usted desea elimarla del todo, el botón "LIMPIAR" que está en el encabezado le servirá para borrar todos estos datos.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="">Cerrar</a>
+        </div>
+      </div>
+	</body>
+</html>
