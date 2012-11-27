@@ -28,9 +28,13 @@ Para el desarrollo del programa se usa las estructuras implementadas por la libr
 
 Forma de compilación, ejecución y utilización de la aplicación
 --------
+
 Para el uso correcto de la aplicacion usted debe descargar la carpeta completa de EditorABC_version_2.0
+
 1. Con un doble click sencillo la aplicacion correra en su navegador predeterminado. (se recomienda usar Google Chrome)
+
 para utilizar la aplicacion usted debera:
+
 1. es necerario tener archivos que ya cuenten con formato abc para no emprezar desde cero, por eso se proporcionan dos archivos con canciones.
 2. usted primero debe cargar el archivo.
 3. usted seguidamente debera mostrar el archivo y esperar a que este se mueste en pantalla.
