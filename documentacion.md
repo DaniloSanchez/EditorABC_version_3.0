@@ -18,10 +18,13 @@ Este proyecto trata sobre la implementacion de la libreria abc de js. Para esto 
 
 Descripción del contenido a desplegar
 --------
+
 El programa funcionara con multiples areas.
+
 1. un area de texto principal en la cual se cargaran los archivos musicales.
 2. un area de dibujo donde se ira mostrando la partitura conforme se va editando o creando.
 3. una seccion de botones que cuentan con la funciones especiales para editar y crear partituras nota por nota.
+
 Definición de estructuras de datos (formato) utilizadas
 --------
 Para el desarrollo del programa se usa las estructuras implementadas por la libreria ABC. Este cuenta con la facilidad de que se encuentra implementadas estructuras para dibujar.
