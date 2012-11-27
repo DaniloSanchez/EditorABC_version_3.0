@@ -90,8 +90,14 @@ function Guardar(){
 // Funtion para agregar un silencio en formato abc donde se encuentre el cursor
 function silencios_insert()
 {
-  var silencio_nota = document.getElementById('silencio_notas');
-  silencio_nota = silencio_nota.value;
+  for(i=0;i<document.form_silencios.silencio.length;i++)
+ {
+  if(document.form_silencios.silencio[i].checked)
+  {
+    var marcado=i;
+  }
+ }
+  var silencio_nota = document.form_silencios.silencio[marcado].value;
   var textarea = document.getElementById('textarea');
   var text = textarea.value;
   var cursor = getCaret(textarea);  
@@ -162,73 +168,45 @@ function arreglos_insert()
 
 
 function obtener_nota () {
-  var Notas = "C";
-  nots = document.getElementById('nota');
-  nots= nots.value;
-  switch (nots)
+  for(i=0;i<document.form_notas.nota.length;i++)
+ {
+  if(document.form_notas.nota[i].checked)
   {
-    case "Do":
-      Notas = "C";
-      break;
-    case "Re":
-      Notas = "D";
-      break;
-    case "Mi":
-      Notas = "E";
-      break;
-    case "Fa":
-      Notas = "F";
-      break;
-    case "Sol":
-      Notas = "G";
-      break;
-    case "La":
-      Notas = "A";
-      break;
-    case "Si":
-      Notas = "B";
-      break;
-  }  
-  return Notas;
+    var marcado=i;
+  }
+ }
+ var nota = document.form_notas.nota[marcado].value;   
+  return nota;
 };
 
 
 function obtener_duracion()
 {
-  var dur = document.getElementById('notas_figura');
-  dur = dur.value;
-  var duracion = "4";
-  switch(dur)
+  for(i=0;i<document.form_figura.duracion.length;i++)
+ {
+  if(document.form_figura.duracion[i].checked)
   {
-    case "redonda":
-      duracion = "8";
-      break;
-    case "blanca":
-      duracion = "4";
-      break;
-    case "negra":
-      duracion = "2";
-      break;
-    case "corchea":
-      duracion = "1";
-      break;
-    case "semicorchea":
-      duracion = "1/2";
-      break;
-    case "fusa":
-      duracion = "1/4";
-      break;
-    case "semifusa":
-      duracion = "1/8";
-      break;
+    var marcado=i;
   }
-  return duracion;
+ } 
+  var dur = document.form_figura.duracion[marcado].value;  
+  return dur;
 };
 
+
+
+
 function notas_insert()
-{  
-  var frec = document.getElementById("frecuencia");
-  frec = frec.value;  
+  {  
+   for(i=0;i<document.form_octava.octava.length;i++)
+   {
+    if(document.form_octava.octava[i].checked)
+    {
+      var marcado=i;
+    }
+   }
+  var frec = document.form_octava.octava[marcado].value;
+  //alert("El valor seleccionado es: "+frec);
   var textarea = document.getElementById('textarea');
   var text = textarea.value;
   var cursor = getCaret(textarea);  
@@ -237,20 +215,20 @@ function notas_insert()
     case '1':      
       var nota = obtener_nota();      
       nota = nota + ",";
-      nota = nota + obtener_duracion();
+      nota = nota + obtener_duracion();      
       text = text.substring(0,cursor)+nota+text.substring(cursor,text.length); 
       textarea.value = text;
       break;
     case '2':
       var nota = obtener_nota();
-      nota = nota + obtener_duracion();
+      nota = nota + obtener_duracion();      
       text = text.substring(0,cursor)+nota+text.substring(cursor,text.length); 
       textarea.value = text;
       break;
     case '3':
       var nota = obtener_nota();
       nota = nota.toLowerCase();
-      nota = nota + obtener_duracion();
+      nota = nota + obtener_duracion();      
       text = text.substring(0,cursor)+nota+text.substring(cursor,text.length); 
       textarea.value = text;
       break;
@@ -258,8 +236,8 @@ function notas_insert()
       var nota = obtener_nota();
       nota=nota.toLowerCase();
       nota = nota + obtener_duracion();
-      texto.value = nota;
-      nota = nota + "'"; 
+      text.value = nota;
+      nota = nota + "'";      
       text = text.substring(0,cursor)+nota+text.substring(cursor,text.length); 
       textarea.value = text;     
       break;

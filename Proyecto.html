@@ -143,37 +143,55 @@
           <h3>Inserta Nota</h3>
         </div>
         <div class="modal-body">
-          <label class="checkbox inline">Figura
-	          <select id="notas_figura" class="span3">
-	            <option>redonda</option>
-	            <option>blanca</option>
-	            <option>negra</option>
-	            <option>corchea</option>
-	            <option>semicorchea</option>
-	            <option>fusa</option>
-	            <option>semifusa</option>
-	          </select>
-          </label>
-          <label class="checkbox inline">Nota
-	          <select id="nota" class="span3">
-	            <option>Do</option>
-	            <option>Re</option>
-	            <option>Mi</option>
-	            <option>Fa</option>
-	            <option>Sol</option>
-	            <option>La</option>
-	            <option>Si</option>
-	          </select>
-          </label>
-          <label class="checkbox inline">octava
-          	<select id="frecuencia" class="span3">
-          		<option>1</option>
-          		<option>2</option>
-          		<option>3</option>
-          		<option>4</option>
-          	</select>
-          </label>
-
+        	<div class="container-fluid">
+        		<div class="row-fluid">
+        			<div class="span4">
+        				<h5>Figuras musicales</h5>
+        			</div>
+        			<div class="span4">
+        				<h5>notas musicales</h5>
+        			</div>
+        			<div class="span4">
+        				<h5>octava </h5>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="container-fluid" id="contenedor-notas">
+				  <div class="row-fluid">				  
+					<div class="span4">
+						<br>
+						<form name="form_figura">
+							<input type="radio" name="duracion" value="8" /><img src="bootstrap/source/redonda.png"  width="30" height="30"> Redonda<br />
+							<input type="radio" name="duracion" value="4" /><img src="bootstrap/source/blanca.png"  width="30" height="30">blanca<br />
+							<input type="radio" name="duracion" value="2" /><img src="bootstrap/source/negra.png"  width="30" height="30">negra <br />
+							<input type="radio" name="duracion" value="1" /><img src="bootstrap/source/corchea.png"  width="30" height="30">corchea<br />
+							<input type="radio" name="duracion" value="1/2" /><img src="bootstrap/source/semicorchea.png"  width="30" height="30">semicorchea<br />
+							<input type="radio" name="duracion" value="1/4" /><img src="bootstrap/source/fusa.png"  width="30" height="30">fusa<br />
+							<input type="radio" name="duracion" value="1/8" /><img src="bootstrap/source/semifusa.png"  width="30" height="30">semifusa<br />
+						</form>						
+					</div>					
+					</br>
+					<div class="span4">					
+						 <form name="form_notas">
+							<input type="radio" name="nota" value="C" /><img src="bootstrap/source/do.png"  width="30" height="30"> Do<br />
+							<input type="radio" name="nota" value="D" /><img src="bootstrap/source/re.png"  width="30" height="30">Re<br />
+							<input type="radio" name="nota" value="E" /><img src="bootstrap/source/mi.png"  width="30" height="30">Mi <br />
+							<input type="radio" name="nota" value="F" /><img src="bootstrap/source/fa.png"  width="30" height="30">Fa<br />
+							<input type="radio" name="nota" value="G" /><img src="bootstrap/source/sol.png"  width="30" height="30">Sol<br />
+							<input type="radio" name="nota" value="A" /><img src="bootstrap/source/la.png"  width="30" height="30">La<br />
+							<input type="radio" name="nota" value="B" /><img src="bootstrap/source/si.png"  width="30" height="30">Si<br />
+						</form>
+					</div>
+					<div class="span4">						
+						 <form name="form_octava">
+							<input type="radio" name="octava" value="1" />Primera<br /><br>
+							<input type="radio" name="octava" value="2" />Segunda<br /><br>
+							<input type="radio" name="octava" value="3" />Tercera <br /><br>
+							<input type="radio" name="octava" value="4" />cuarta<br /><br>
+						</form>
+					</div>
+				  </div>
+				</div>				       	        
         </div>
         <div class="modal-footer">
           <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="notas_insert();">Ok</a>
@@ -187,17 +205,15 @@
           <h3>Inseta Silencio</h3>
         </div>
         <div class="modal-body">
-          <label class="checkbox inline">Figura
-	          <select id="silencio_notas" class="span3">
-	            <option>redonda</option>
-	            <option>blanca</option>
-	            <option>negra</option>
-	            <option>corchea</option>
-	            <option>semicorchea</option>
-	            <option>fusa</option>
-	            <option>semifusa</option>
-	          </select>
-          </label>
+          	<form name="form_silencios">
+				<input type="radio" name="silencio" value="redonda" /><img src="bootstrap/source/silencio_redonda.png"  width="30" height="30"> redonda<br />
+				<input type="radio" name="silencio" value="blanca" /><img src="bootstrap/source/silencio_blanca.png"  width="30" height="30">blanca<br />
+				<input type="radio" name="silencio" value="negra" /><img src="bootstrap/source/silencio_negra.png"  width="30" height="30">negra <br />
+				<input type="radio" name="silencio" value="corchea" /><img src="bootstrap/source/silencio_corchea.png"  width="30" height="30">corchea<br />
+				<input type="radio" name="silencio" value="semicorchea" /><img src="bootstrap/source/silencio_semicorchea.png"  width="30" height="30">semicorchea<br />
+				<input type="radio" name="silencio" value="fusa" /><img src="bootstrap/source/silencio_fusa.png"  width="30" height="30">fusa<br />
+				<input type="radio" name="silencio" value="semifusa" /><img src="bootstrap/source/silencio_semifusa.png"  width="30" height="30">semifusa<br />
+			</form>
         </div>
         <div class="modal-footer">
           <a href="#" class="btn btn-primary" data-dismiss="modal" onclick="silencios_insert();">Ok</a>
